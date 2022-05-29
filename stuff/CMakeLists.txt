@@ -1,0 +1,19 @@
+include_directories(../modules/cpp_vk_lib/cpp_vk_lib/include)
+include_directories(../modules/cpp_vk_lib/modules/spdlog/include)
+include_directories(../modules/cpp_vk_lib/modules/asio/asio/include)
+include_directories(include)
+
+find_library(cpp_vk_lib HINTS "../cpp_vk_lib")
+link_libraries(cpp_vk_lib simdjson)
+
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -O3")
+
+add_executable(cmus_status src/cmus_status.cpp)
+add_executable(id_collector src/id_collector.cpp)
+add_executable(messages_generator src/messages_generator.cpp)
+add_executable(kick_all src/kick_all.cpp)
+add_executable(ping_all src/ping_all.cpp)
+add_executable(delete_messages_from_user src/delete_messages_from_user.cpp)
+add_executable(pic_from_message src/pic_from_message.cpp)
+add_executable(photo_deleter src/photo_deleter.cpp)
+add_executable(friends_graph src/friends_graph.cpp)
