@@ -1,4 +1,3 @@
-#include "cpp_vk_lib/runtime/string_utils/string_utils.hpp"
 #include "cpp_vk_lib/runtime/setup_logger.hpp"
 #include "cpp_vk_lib/vk/long_poll/long_poll.hpp"
 #include "cpp_vk_lib/vk/config/config.hpp"
@@ -10,8 +9,7 @@
 
 inline bool cpp_vk_lib_curl_verbose = false;
 
-
-static std::string os_exec(std::string_view cmd) {
+std::string os_exec(std::string_view cmd) {
   std::string result;
   std::array<char, 128> buffer;
   std::unique_ptr<FILE, decltype (&pclose)> pipe(popen(cmd.data(), "r"), pclose);

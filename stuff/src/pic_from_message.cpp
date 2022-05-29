@@ -1,4 +1,4 @@
-// I don't understand what is it, but let it be.
+// I DO NOT GIVE A FUCK.
 #include "cpp_vk_lib/vk/methods/constructor.hpp"
 #include "cpp_vk_lib/vk/config/config.hpp"
 #include "cpp_vk_lib/vk/attachment/attachment.hpp"

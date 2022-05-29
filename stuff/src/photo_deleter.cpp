@@ -34,8 +34,10 @@ int main() {
       simdjson::dom::object parsed_output = parser.parse(output);
 
       if (parsed_output.begin().key() == "response") {
-        static int iterator = 0;
-        std::cout << "OK " << iterator++ << std::endl;
+        std::cout << [] {
+          static int deleted_count = 0;
+          return deleted_count++;
+        }() << std::endl;
       } else {
         std::cout << "ERROR: " << parsed_output << std::endl;
       }

@@ -1,5 +1,4 @@
 #include "cpp_vk_lib/runtime/setup_logger.hpp"
-#include "cpp_vk_lib/runtime/net/network.hpp"
 #include "cpp_vk_lib/runtime/string_utils/implementation/split.hpp"
 #include "cpp_vk_lib/vk/methods/constructor.hpp"
 #include "cpp_vk_lib/vk/config/config.hpp"
@@ -12,7 +11,7 @@
 
 int main(int argc, char* argv[]) {
   if (argc != 5) {
-    std::cerr << "Usage ./anekdoti <config.json> <chat-id> <anekdoti.txt>\n";
+    std::cerr << "Usage ./messages_generator <config.json> <chat-id> <payload.txt>\n";
     return -1;
   }
   vk::config::load(argv[1]);
@@ -41,14 +40,14 @@ int main(int argc, char* argv[]) {
 
   while (true) {
     std::this_thread::sleep_for(std::chrono::seconds(wait_generator(gen)));
-    std::uniform_int_distribution<> anekdoti_generator(0, payload.size() - 1);
-    size_t index = anekdoti_generator(gen);
+    std::uniform_int_distribution<> distrib(0, payload.size() - 1);
+    size_t index = distrib(gen);
     std::cout << vk::method::user_constructor()
       .method("messages.send")
       .param("peer_id", chat_id)
       .param("message", payload[index])
       .param("random_id", "0")
       .perform_request() << std::endl;
-    payload[index] = "";
+    payload[index].clear();
   }
 }

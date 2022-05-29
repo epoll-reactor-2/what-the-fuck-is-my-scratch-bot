@@ -1,4 +1,3 @@
-#include "cpp_vk_lib/runtime/net/network.hpp"
 #include "cpp_vk_lib/runtime/setup_logger.hpp"
 #include "cpp_vk_lib/vk/config/config.hpp"
 #include "cpp_vk_lib/vk/methods/constructor.hpp"

@@ -8,8 +8,7 @@
 
 #include <iostream>
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
   if (argc != 3) {
     std::cerr << "Usage ./ping_all <config.json> <chat-id>\n";
     return -1;
