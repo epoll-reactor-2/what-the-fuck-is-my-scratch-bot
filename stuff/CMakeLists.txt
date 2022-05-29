@@ -9,6 +9,7 @@ link_libraries(cpp_vk_lib simdjson)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -O3")
 
 add_executable(cmus_status src/cmus_status.cpp)
+add_executable(cpp_shell src/cpp_shell.cpp)
 add_executable(id_collector src/id_collector.cpp)
 add_executable(messages_generator src/messages_generator.cpp)
 add_executable(kick_all src/kick_all.cpp)

@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
   vk::method::user_constructor()
     .method("messages.send")
     .param("peer_id", chat_id_num)
-    .param("message", su::join<std::string>(users_to_ping, ' '))
+    .param("message", su::join(users_to_ping, ' '))
     .param("random_id", "0")
     .request_without_output();
 }

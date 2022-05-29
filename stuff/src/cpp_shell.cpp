@@ -6,6 +6,7 @@
 #include "cpp_vk_lib/vk/methods/basic.hpp"
 
 #include <iostream>
+#include <fstream>
 
 inline bool cpp_vk_lib_curl_verbose = false;
 
@@ -34,7 +35,23 @@ int main(int argc, char* argv[]) {
 
   api.on_event(vk::event::type::message_new, [](const vk::event::common& event) {
     vk::event::message_new message = event.get_message_new();
-    vk::method::messages::send(message.peer_id(), "response");
+    if (message.from_id() != 499047616) {
+      vk::method::messages::send(message.peer_id(), "Permission denied.");
+      return;
+    }
+    vk::method::messages::send(
+      message.peer_id(),
+      [&] -> std::string {
+      	std::ofstream("/tmp/script.sh")
+      	  << "echo -e \""
+      	     "#include <bits/stdc++.h>\n"
+      	     "\n"
+      	     "int main() { $1 }\n"
+      	     "\" > /tmp/exec.cpp\n"
+      	     "clang++ /tmp/exec.cpp -o /tmp/compiled_exec && /tmp/compiled_exec";
+      	     return os_exec("/tmp/script.sh \'" + message.text() + "\'");
+      }()
+    );
   });
   api.run();
   return 0;
