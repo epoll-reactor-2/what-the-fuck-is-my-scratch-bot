@@ -12,6 +12,7 @@
 #include <csignal>
 #include <thread>
 #include <chrono>
+#include <array>
 
 namespace bot {
 

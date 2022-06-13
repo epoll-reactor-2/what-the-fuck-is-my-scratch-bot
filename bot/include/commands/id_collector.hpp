@@ -35,11 +35,11 @@ class id_collector_command : public command {
       return {};
     }
     std::vector<size_t> friends;
-    friends.reserve(parsed["response"]["count"]);
+    friends.reserve(parsed["response"]["count"].get_int64());
     auto array = parsed["response"]["items"].get_array();
     friends.reserve(array.size());
     for (auto element : parsed["response"]["items"].get_array()) {
-      friends.push_back(element);
+      friends.push_back(element.get_uint64());
     }
     total_ids_collected += friends.size();
     return friends;
