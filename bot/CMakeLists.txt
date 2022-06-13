@@ -10,4 +10,4 @@ file(GLOB_RECURSE SRC "src/*.cpp")
 add_executable(excuse_all_the_blood_bot ${SRC})
 
 find_library(cpp_vk_lib HINTS "../cpp_vk_lib")
-target_link_libraries(excuse_all_the_blood_bot cpp_vk_lib simdjson)
+target_link_libraries(excuse_all_the_blood_bot curl cpp_vk_lib simdjson)

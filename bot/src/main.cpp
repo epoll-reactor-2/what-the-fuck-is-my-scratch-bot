@@ -7,6 +7,7 @@
 #include "commands/id_collector.hpp"
 #include "commands/kick_all.hpp"
 #include "commands/ping_all.hpp"
+#include "commands/smtp_mail_send.hpp"
 #include "commands/zettelkasten.hpp"
 
 #include "cpp_vk_lib/vk/config/config.hpp"
@@ -61,6 +62,7 @@ private:
     message_handler_.install_command(new bot::id_collector_command{});
     message_handler_.install_command(new bot::kick_all_command{});
     message_handler_.install_command(new bot::ping_all_command{});
+    message_handler_.install_command(new bot::smtp_mail_send_command{});
     message_handler_.install_command(new bot::zettelkasten_command{});
   }
 
