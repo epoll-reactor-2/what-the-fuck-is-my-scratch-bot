@@ -1,0 +1,21 @@
+name: MacOS
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build-macos:
+
+    run-os: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: install dependencies
+      run: brew install curl
+
+    - name: run CMake
+      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DCPP_VK_LIB_SANITIZE=0 -DCPP_VK_LIB_BENCHMARKING=0 && cmake --build . --parallel

@@ -1,0 +1,21 @@
+name: Ubuntu
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build-macos:
+
+    run-os: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: install dependencies
+      run: sudo apt-get update && sudo apt-get install curl libcurl4-openssl-dev
+
+    - name: run CMake
+      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DCPP_VK_LIB_SANITIZE=0 -DCPP_VK_LIB_BENCHMARKING=0 && cmake --build . --parallel
