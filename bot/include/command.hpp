@@ -14,7 +14,7 @@ class command {
 public:
   virtual ~command() = default;
 
-  virtual std::string trigger() const = 0;
+  virtual std::string_view trigger() const = 0;
   virtual void run(
     const vk::event::message_new& event,
     const std::vector<std::string_view>& args

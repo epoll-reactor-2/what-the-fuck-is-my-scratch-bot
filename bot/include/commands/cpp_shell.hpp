@@ -25,8 +25,7 @@ class cpp_shell_command : public command {
     }
     return result;
   }
-
-  virtual std::string trigger() const override {
+  virtual std::string_view trigger() const override {
     return "/cpp_shell";
   }
   virtual void run(

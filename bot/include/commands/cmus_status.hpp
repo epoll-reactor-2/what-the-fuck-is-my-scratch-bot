@@ -16,25 +16,6 @@
 namespace bot {
 
 class cmus_status_command : public background_command {
-public:
-  cmus_status_command() {
-    printf("cmus_status_command: setup signal handlers");
-    for (int sig : { SIGABRT, SIGALRM, SIGBUS,  SIGFPE,  SIGHUP,
-                    SIGILL,  SIGINT,  SIGKILL, SIGPIPE, SIGQUIT,
-                    SIGSEGV, SIGTERM, SIGSTOP, SIGTSTP, SIGTTIN,
-                    SIGTTOU, SIGPROF, SIGSYS,  SIGTRAP, SIGVTALRM,
-                    SIGXCPU, SIGXFSZ }) {
-      signal(sig, [](int) {
-        vk::method::user_constructor{}
-            .method("status.set")
-            .param("text", "")
-            .request_without_output();
-        exit(0);
-      });
-    }
-  }
-
-private:
   std::string get_cmus_status() {
     static const char cmus_command[] =
         "#!/bin/sh\n"
@@ -77,7 +58,6 @@ private:
     }
     return result;
   }
-
 
   virtual void run() override {
     std::string cached_output = get_cmus_status();

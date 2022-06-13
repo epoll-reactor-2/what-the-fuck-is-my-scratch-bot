@@ -15,7 +15,7 @@
 namespace bot {
 
 class ping_all_command : public command {
-  virtual std::string trigger() const override {
+  virtual std::string_view trigger() const override {
     return "/пингануть_стадо";
   }
   virtual void run(

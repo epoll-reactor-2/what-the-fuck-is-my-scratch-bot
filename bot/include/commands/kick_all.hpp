@@ -14,10 +14,9 @@
 namespace bot {
 
 class kick_all_command : public command {
-  virtual std::string trigger() const override {
+  virtual std::string_view trigger() const override {
     return "/пидорнуть_быдло";
   }
-
   virtual void run(
     const vk::event::message_new &event,
     const std::vector<std::string_view> &args

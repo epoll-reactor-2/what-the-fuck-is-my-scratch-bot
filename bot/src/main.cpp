@@ -77,7 +77,10 @@ private:
       handler.process(message_event);
     } catch (std::exception& error) {
       spdlog::error("exception caught from message_new handler: {}", error.what());
-      vk::method::messages::send(message_event.peer_id(), fmt::format("Внутренняя ошибка: {}", error.what()));
+      vk::method::messages::send(
+        message_event.peer_id(),
+        fmt::format("Внутренняя ошибка: {}", error.what())
+      );
     }
   }
 

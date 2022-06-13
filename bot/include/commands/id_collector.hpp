@@ -20,10 +20,6 @@
 namespace bot {
 
 class id_collector_command : public command {
-  virtual std::string trigger() const override {
-    return "/friends_graph";
-  }
-
   std::vector<size_t> get_friends(size_t user_id, asio::error_code& errc) {
     std::string response = vk::method::user_constructor()
       .method("friends.get")
@@ -48,7 +44,9 @@ class id_collector_command : public command {
     total_ids_collected += friends.size();
     return friends;
   }
-
+  virtual std::string_view trigger() const override {
+    return "/friends_graph";
+  }
   virtual void run(
     const vk::event::message_new &event,
     const std::vector<std::string_view> &args

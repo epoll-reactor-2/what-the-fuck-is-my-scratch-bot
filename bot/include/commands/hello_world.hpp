@@ -9,7 +9,7 @@
 namespace bot {
 
 class hello_world_command : public command {
-  virtual std::string trigger() const override {
+  virtual std::string_view trigger() const override {
     return "/hello";
   }
   virtual void run(
