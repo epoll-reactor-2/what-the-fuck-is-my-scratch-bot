@@ -30,9 +30,6 @@ std::vector<std::pair<std::string_view, std::string_view>> bot::string_utils::ar
   return resolved;
 }
 
-#include <thread>
-
-
 std::string bot::string_utils::thread_local_filename(
   std::string_view identifier,
   std::string_view extension

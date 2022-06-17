@@ -2,7 +2,6 @@
 #include "message_handler.hpp"
 #include "commands/cmus_status.hpp"
 #include "commands/cpp_shell.hpp"
-#include "commands/delete_saved_photos.hpp"
 #include "commands/hello_world.hpp"
 #include "commands/id_collector.hpp"
 #include "commands/kick_all.hpp"
@@ -58,7 +57,6 @@ private:
 
   void install_commands() {
     message_handler_.install_command(new bot::cpp_shell_command{});
-    message_handler_.install_command(new bot::delete_saved_photos_command{});
     message_handler_.install_command(new bot::hello_world_command{});
     message_handler_.install_command(new bot::id_collector_command{});
     message_handler_.install_command(new bot::kick_all_command{});

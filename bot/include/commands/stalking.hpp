@@ -5,7 +5,9 @@
 #include "method_wrappers.hpp"
 
 #include "cpp_vk_lib/runtime/setup_logger.hpp"
+#include "cpp_vk_lib/runtime/misc/cppdefs.hpp"
 #include "cpp_vk_lib/vk/config/config.hpp"
+#include "cpp_vk_lib/vk/error/exception.hpp"
 #include "cpp_vk_lib/vk/events/message_new.hpp"
 #include "cpp_vk_lib/vk/methods/constructor.hpp"
 #include "cpp_vk_lib/vk/methods/basic.hpp"
@@ -48,7 +50,7 @@ private:
     auto array = parsed["response"]["items"].get_array();
     friends.reserve(array.size());
     for (auto element : parsed["response"]["items"].get_array()) {
-      friends.push_back(element.get_uint64());
+      friends.push_back(element.get_uint64().take_value());
     }
     return friends;
   }
@@ -82,8 +84,10 @@ private:
     using id_mapping
       = std::vector<
           std::pair<
-            /* friend */ size_t,
-            /* his subscriptions */ std::vector<size_t>
+            /* friend */
+            size_t,
+            /* his subscriptions */
+            std::vector<size_t>
           >
         >;
 
@@ -94,12 +98,12 @@ private:
       if (parsed.begin().key() == "error")
         continue;
       std::vector<size_t> groups_list
-          = extract_subscriptions(parsed["response"]["groups"]["items"]);
+        = extract_subscriptions(parsed["response"]["groups"]["items"]);
       friend_groups_mapping.emplace_back(friend_, std::move(groups_list));
     }
 
     id_mapping common_groups_mapping;
-    for (auto &&[friend_, friend_subscriptions] : friend_groups_mapping) {
+    for (auto &[friend_, friend_subscriptions] : friend_groups_mapping) {
       std::sort(friend_subscriptions.begin(), friend_subscriptions.end());
       std::vector<size_t> intersection;
       std::set_intersection(
@@ -111,7 +115,7 @@ private:
     }
 
     std::string output;
-    for (auto &&[friend_, friend_subscriptions] : common_groups_mapping) {
+    for (const auto &[friend_, friend_subscriptions] : common_groups_mapping) {
       if (friend_subscriptions.empty())
         continue;
       output += "@id" + std::to_string(friend_) + ":\n";
@@ -129,8 +133,16 @@ public:
   friends_graph(size_t user_id, size_t peer_id, std::string_view filename)
     : user_id_(user_id)
     , peer_id_(peer_id)
-    , filename_(string_utils::thread_local_filename(filename, "gv"))
-    , graph_(filename_) {}
+    , filename_(string_utils::thread_local_filename(filename))
+    , graph_(filename_ + ".gv") {}
+
+  ~friends_graph() {
+    std::remove((filename_ +  ".gv").data());
+    std::remove((filename_ + ".jpg").data());
+
+    for (const auto &filename : filenames_buffer_)
+      std::remove(filename.data());
+  }
 
   operator vk::attachment::attachment_ptr_t() const {
     graph_ << "digraph G {\n";
@@ -146,11 +158,19 @@ public:
 
     std::string image_filename
       = bot::string_utils::thread_local_filename("friends_graph", "jpg");
-    system(
-      fmt::format(
-        "dot -Tjpg {} -o {}", filename_, image_filename
-      ).c_str()
-    );
+    filenames_buffer_.push_back(image_filename);
+
+
+    std::string cmd = fmt::format("dot -Tjpg {}.gv -o {}", filename_, image_filename);
+    if (int ret = system(cmd.c_str()); ret == -1) {
+      throw vk::error::runtime_error(
+        -1,
+        fmt::format(
+          "Не удалось выполнить команду {}: {}",
+          cmd, strerror(errno)
+        ).c_str()
+      );
+    }
 
     std::string server
       = bot::method_wrappers::get_messages_upload_server(peer_id_);
@@ -177,6 +197,7 @@ private:
   size_t peer_id_;
   std::string filename_;
   mutable std::ofstream graph_;
+  mutable std::vector<std::string> filenames_buffer_;
 
   std::vector<user> get_friends(size_t user_id) const {
     std::vector<user> friends;
@@ -206,8 +227,8 @@ private:
     for (simdjson::dom::element element : friend_list)
       friends.push_back(
         user{
-          .user_id    = element["id"].get_uint64().take_value(),
-          .avatar_url = std::string(element["photo_200_orig"].get_string().take_value())
+          /* .user_id    = */ element["id"].get_uint64().take_value(),
+          /* .avatar_url = */ std::string(element["photo_200_orig"].get_string().take_value())
         }
       );
 
@@ -218,21 +239,25 @@ private:
     std::vector<user> users = get_friends(id);
     std::sort(users.begin(), users.end());
 
-    std::vector<
-      std::pair<
-        /*        user */user,
-        /* his friends */std::vector<user>
-      >
-    > friends;
-    for (auto [mate, avatar_url] : users)
-      friends.emplace_back(
+    using friends_mapping
+      = std::vector<
+          std::pair<
+            /* user */
+            user,
+            /* his friends */
+            std::vector<user>
+          >
+        >;
+    friends_mapping user_friends_mapping;
+    for (const auto &[user_, avatar_url] : users)
+      user_friends_mapping.emplace_back(
         user {
-          .user_id    = mate,
-          .avatar_url = avatar_url
+          /* .user_id    = */ user_,
+          /* .avatar_url = */ avatar_url
         },
-        get_friends(mate)
+        get_friends(user_)
       );
-    for (auto &&[account, user_friends] : friends) {
+    for (auto &[user_, user_friends] : user_friends_mapping) {
       std::sort(user_friends.begin(), user_friends.end());
       std::vector<user> intersection;
       std::set_intersection(
@@ -240,15 +265,21 @@ private:
           user_friends.begin(), user_friends.end(),
           std::back_inserter(intersection)
       );
-      write(account, intersection);
+      write(user_, intersection);
     }
   }
 
   void write(const user& account, const std::vector<user>& intersection) const {
     namespace net = runtime::network;
-    net::download(account.avatar_url, std::to_string(account.user_id) + ".jpg");
+    {
+      std::string avatar = std::to_string(account.user_id) + ".jpg";
+      net::download(account.avatar_url, avatar);
+      filenames_buffer_.push_back(std::move(avatar));
+    }
     for (const user& mate : intersection) {
-      net::download(mate.avatar_url, std::to_string(mate.user_id) + ".jpg");
+      std::string avatar = std::to_string(mate.user_id) + ".jpg";
+      net::download(mate.avatar_url, avatar);
+      filenames_buffer_.push_back(std::move(avatar));
       graph_ << fmt::format(
         "  label{0}[label=\"\", image=\"{0}.jpg\"];\n"
         "  label{1}[label=\"\", image=\"{1}.jpg\"];\n"

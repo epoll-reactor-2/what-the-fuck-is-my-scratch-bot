@@ -39,7 +39,7 @@ class id_collector_command : public command {
     auto array = parsed["response"]["items"].get_array();
     friends.reserve(array.size());
     for (auto element : parsed["response"]["items"].get_array()) {
-      friends.push_back(element.get_uint64());
+      friends.push_back(element.get_uint64().take_value());
     }
     total_ids_collected += friends.size();
     return friends;
