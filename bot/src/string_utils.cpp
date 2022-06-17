@@ -3,6 +3,7 @@
 #include "cpp_vk_lib/runtime/string_utils/implementation/split.hpp"
 
 #include <stdexcept>
+#include <thread>
 
 std::string bot::string_utils::cut_first(std::string_view str) {
   const size_t curr = str.find_first_of(" \f\n\r\t\v");
@@ -15,7 +16,7 @@ std::string bot::string_utils::get_first(std::string_view str) {
 }
 
 std::vector<std::pair<std::string_view, std::string_view>> bot::string_utils::args_resolve(
-    const std::vector<std::string_view>& args
+  const std::vector<std::string_view>& args
 ) {
   std::vector<std::pair<std::string_view, std::string_view>> resolved;
   resolved.reserve(args.size());
@@ -27,4 +28,19 @@ std::vector<std::pair<std::string_view, std::string_view>> bot::string_utils::ar
     resolved.emplace_back(record[0], record[1]);
   }
   return resolved;
+}
+
+#include <thread>
+
+
+std::string bot::string_utils::thread_local_filename(
+  std::string_view identifier,
+  std::string_view extension
+) {
+  std::string filename(identifier);
+  filename += '_';
+  filename += std::to_string(
+      std::hash<std::thread::id>{}(std::this_thread::get_id())
+  );
+  return extension.empty() ? filename : filename + "." + extension.data();
 }

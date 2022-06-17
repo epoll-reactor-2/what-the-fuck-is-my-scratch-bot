@@ -13,6 +13,11 @@ std::vector<std::pair<std::string_view, std::string_view>> args_resolve(
   const std::vector<std::string_view>& args
 );
 
+std::string thread_local_filename(
+    std::string_view identifier,
+    std::string_view extension = ""
+);
+
 }// namespace bot::string_utils
 
 #endif // EXCUSE_ALL_THE_BLOOD_BOT_UTILS_STRING_UTILS_HPP
