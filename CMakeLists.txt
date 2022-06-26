@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(
-  excuse_all_the_blood_bot
-  DESCRIPTION "Personal bot with wierd things for https://vk.com/excuse_all_the_blood"
+  nobody_can_fuck_with_me_bot
+  DESCRIPTION "Personal bot with wierd things for https://vk.com/nobody_can_fuck_with_me"
   LANGUAGES CXX
 )
 

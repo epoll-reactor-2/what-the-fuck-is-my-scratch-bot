@@ -1,5 +1,5 @@
-#ifndef EXCUSE_ALL_THE_BLOOD_BOT_CMUS_STATUS_HPP
-#define EXCUSE_ALL_THE_BLOOD_BOT_CMUS_STATUS_HPP
+#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_CMUS_STATUS_HPP
+#define NOBODY_CAN_FUCK_WITH_ME_BOT_CMUS_STATUS_HPP
 
 #include "../background_command.hpp"
 
@@ -93,4 +93,4 @@ class cmus_status_command : public background_command {
 
 } // namespace bot
 
-#endif // EXCUSE_ALL_THE_BLOOD_BOT_CMUS_STATUS_HPP
+#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_CMUS_STATUS_HPP

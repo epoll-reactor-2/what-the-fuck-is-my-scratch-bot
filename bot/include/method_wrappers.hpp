@@ -1,5 +1,5 @@
-#ifndef EXCUSE_ALL_THE_BLOOD_BOT_METHOD_WRAPPERS_HPP
-#define EXCUSE_ALL_THE_BLOOD_BOT_METHOD_WRAPPERS_HPP
+#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_METHOD_WRAPPERS_HPP
+#define NOBODY_CAN_FUCK_WITH_ME_BOT_METHOD_WRAPPERS_HPP
 
 #include "cpp_vk_lib/vk/attachment/attachment.hpp"
 
@@ -17,4 +17,4 @@ void send_image(size_t peer_id, std::string_view path, std::string_view text);
 
 } // namespace bot::method_wrappers
 
-#endif // EXCUSE_ALL_THE_BLOOD_BOT_METHOD_WRAPPERS_HPP
+#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_METHOD_WRAPPERS_HPP

@@ -1,5 +1,5 @@
-#ifndef EXCUSE_ALL_THE_BLOOD_BOT_HELLO_WORLD_HPP
-#define EXCUSE_ALL_THE_BLOOD_BOT_HELLO_WORLD_HPP
+#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_HELLO_WORLD_HPP
+#define NOBODY_CAN_FUCK_WITH_ME_BOT_HELLO_WORLD_HPP
 
 #include "../command.hpp"
 
@@ -22,4 +22,4 @@ class hello_world_command : public command {
 
 } // namespace bot
 
-#endif // EXCUSE_ALL_THE_BLOOD_BOT_HELLO_WORLD_HPP
+#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_HELLO_WORLD_HPP

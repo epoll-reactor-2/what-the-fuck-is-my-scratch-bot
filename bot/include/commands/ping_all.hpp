@@ -1,5 +1,5 @@
-#ifndef EXCUSE_ALL_THE_BLOOD_BOT_PING_ALL_HPP
-#define EXCUSE_ALL_THE_BLOOD_BOT_PING_ALL_HPP
+#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_PING_ALL_HPP
+#define NOBODY_CAN_FUCK_WITH_ME_BOT_PING_ALL_HPP
 
 #include "command.hpp"
 
@@ -64,4 +64,4 @@ class ping_all_command : public command {
 
 } // namespace bot
 
-#endif // EXCUSE_ALL_THE_BLOOD_BOT_PING_ALL_HPP
+#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_PING_ALL_HPP

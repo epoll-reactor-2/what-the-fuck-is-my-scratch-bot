@@ -1,5 +1,5 @@
-#ifndef EXCUSE_ALL_THE_BLOOD_BOT_CPP_SHELL_HPP
-#define EXCUSE_ALL_THE_BLOOD_BOT_CPP_SHELL_HPP
+#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_CPP_SHELL_HPP
+#define NOBODY_CAN_FUCK_WITH_ME_BOT_CPP_SHELL_HPP
 
 #include "../command.hpp"
 
@@ -55,4 +55,4 @@ class cpp_shell_command : public command {
 
 } // namespace bot
 
-#endif // EXCUSE_ALL_THE_BLOOD_BOT_CPP_SHELL_HPP
+#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_CPP_SHELL_HPP

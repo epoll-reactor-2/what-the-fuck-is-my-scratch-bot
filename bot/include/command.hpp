@@ -1,5 +1,5 @@
-#ifndef EXCUSE_ALL_THE_BLOOD_BOT_COMMAND_HPP
-#define EXCUSE_ALL_THE_BLOOD_BOT_COMMAND_HPP
+#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_COMMAND_HPP
+#define NOBODY_CAN_FUCK_WITH_ME_BOT_COMMAND_HPP
 
 #include <vector>
 #include <string>
@@ -23,4 +23,4 @@ public:
 
 } // namespace bot
 
-#endif // EXCUSE_ALL_THE_BLOOD_BOT_COMMAND_HPP
+#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_COMMAND_HPP

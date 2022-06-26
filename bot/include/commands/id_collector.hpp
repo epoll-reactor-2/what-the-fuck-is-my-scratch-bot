@@ -1,5 +1,5 @@
-#ifndef EXCUSE_ALL_THE_BLOOD_BOT_ID_COLLECTOR_HPP
-#define EXCUSE_ALL_THE_BLOOD_BOT_ID_COLLECTOR_HPP
+#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_ID_COLLECTOR_HPP
+#define NOBODY_CAN_FUCK_WITH_ME_BOT_ID_COLLECTOR_HPP
 
 #include "command.hpp"
 
@@ -119,4 +119,4 @@ class id_collector_command : public command {
 
 } // namespace bot
 
-#endif // EXCUSE_ALL_THE_BLOOD_BOT_ID_COLLECTOR_HPP
+#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_ID_COLLECTOR_HPP

@@ -1,5 +1,5 @@
-#ifndef EXCUSE_ALL_THE_BLOOD_BOT_UTILS_STRING_UTILS_HPP
-#define EXCUSE_ALL_THE_BLOOD_BOT_UTILS_STRING_UTILS_HPP
+#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_UTILS_STRING_UTILS_HPP
+#define NOBODY_CAN_FUCK_WITH_ME_BOT_UTILS_STRING_UTILS_HPP
 
 #include <string>
 #include <vector>
@@ -20,4 +20,4 @@ std::string thread_local_filename(
 
 }// namespace bot::string_utils
 
-#endif // EXCUSE_ALL_THE_BLOOD_BOT_UTILS_STRING_UTILS_HPP
+#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_UTILS_STRING_UTILS_HPP

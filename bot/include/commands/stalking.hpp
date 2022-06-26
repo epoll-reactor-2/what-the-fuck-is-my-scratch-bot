@@ -321,4 +321,4 @@ class stalking_command : public command {
 
 } // namespace bot
 
-#endif // EXCUSE_ALL_THE_BLOOD_BOT_STALKING_HPP
+#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_STALKING_HPP
