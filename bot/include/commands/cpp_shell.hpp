@@ -1,5 +1,5 @@
-#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_CPP_SHELL_HPP
-#define NOBODY_CAN_FUCK_WITH_ME_BOT_CPP_SHELL_HPP
+#ifndef WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_CPP_SHELL_HPP
+#define WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_CPP_SHELL_HPP
 
 #include "../command.hpp"
 
@@ -25,10 +25,10 @@ class cpp_shell_command : public command {
     }
     return result;
   }
-  virtual std::string_view trigger() const override {
+  std::string_view trigger() const override {
     return "/cpp_shell";
   }
-  virtual void run(
+  void run(
     const vk::event::message_new& event,
     const std::vector<std::string_view>& args
   ) override {
@@ -55,4 +55,4 @@ class cpp_shell_command : public command {
 
 } // namespace bot
 
-#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_CPP_SHELL_HPP
+#endif // WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_CPP_SHELL_HPP

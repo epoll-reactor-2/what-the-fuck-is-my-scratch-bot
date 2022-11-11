@@ -1,11 +1,10 @@
-#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_METHOD_WRAPPERS_HPP
-#define NOBODY_CAN_FUCK_WITH_ME_BOT_METHOD_WRAPPERS_HPP
+#ifndef WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_METHOD_WRAPPERS_HPP
+#define WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_METHOD_WRAPPERS_HPP
 
 #include "cpp_vk_lib/vk/attachment/attachment.hpp"
 
 #include <string>
 #include <vector>
-
 
 namespace bot::method_wrappers {
 
@@ -17,4 +16,4 @@ void send_image(size_t peer_id, std::string_view path, std::string_view text);
 
 } // namespace bot::method_wrappers
 
-#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_METHOD_WRAPPERS_HPP
+#endif // WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_METHOD_WRAPPERS_HPP

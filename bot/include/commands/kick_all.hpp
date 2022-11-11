@@ -1,5 +1,5 @@
-#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_KICK_ALL_HPP
-#define NOBODY_CAN_FUCK_WITH_ME_BOT_KICK_ALL_HPP
+#ifndef WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_KICK_ALL_HPP
+#define WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_KICK_ALL_HPP
 
 #include "command.hpp"
 
@@ -14,10 +14,10 @@
 namespace bot {
 
 class kick_all_command : public command {
-  virtual std::string_view trigger() const override {
+  std::string_view trigger() const override {
     return "/пидорнуть_быдло";
   }
-  virtual void run(
+  void run(
     const vk::event::message_new &event,
     const std::vector<std::string_view> &args
   ) override {
@@ -50,4 +50,4 @@ class kick_all_command : public command {
 
 } // namespace bot
 
-#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_KICK_ALL_HPP
+#endif // WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_KICK_ALL_HPP

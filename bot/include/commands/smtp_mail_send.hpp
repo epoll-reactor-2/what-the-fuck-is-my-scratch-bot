@@ -1,6 +1,6 @@
 // Гугл я ебал твой рот.
-#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_SMTP_MAIL_SEND_HPP
-#define NOBODY_CAN_FUCK_WITH_ME_BOT_SMTP_MAIL_SEND_HPP
+#ifndef WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_SMTP_MAIL_SEND_HPP
+#define WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_SMTP_MAIL_SEND_HPP
 
 #include "command.hpp"
 #include "string_utils.hpp"
@@ -227,4 +227,4 @@ class smtp_mail_send_command : public command {
 
 } // namespace bot
 
-#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_SMTP_MAIL_SEND_HPP
+#endif // WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_SMTP_MAIL_SEND_HPP

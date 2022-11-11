@@ -1,5 +1,5 @@
-#ifndef EXCUSE_ALL_THE_BLOOD_BOT_STALKING_HPP
-#define EXCUSE_ALL_THE_BLOOD_BOT_STALKING_HPP
+#ifndef WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_STALKING_HPP
+#define WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_STALKING_HPP
 
 #include "command.hpp"
 #include "method_wrappers.hpp"
@@ -295,10 +295,10 @@ private:
 } // namespace
 
 class stalking_command : public command {
-  virtual std::string_view trigger() const override {
+  std::string_view trigger() const override {
     return "/сталкеринг";
   }
-  virtual void run(
+  void run(
     const vk::event::message_new &event,
     const std::vector<std::string_view> &args
   ) override {
@@ -321,4 +321,4 @@ class stalking_command : public command {
 
 } // namespace bot
 
-#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_STALKING_HPP
+#endif // WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_STALKING_HPP

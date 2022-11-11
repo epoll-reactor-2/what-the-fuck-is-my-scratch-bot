@@ -1,5 +1,5 @@
-#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_ID_COLLECTOR_HPP
-#define NOBODY_CAN_FUCK_WITH_ME_BOT_ID_COLLECTOR_HPP
+#ifndef WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_ID_COLLECTOR_HPP
+#define WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_ID_COLLECTOR_HPP
 
 #include "command.hpp"
 
@@ -44,10 +44,10 @@ class id_collector_command : public command {
     total_ids_collected += friends.size();
     return friends;
   }
-  virtual std::string_view trigger() const override {
+  std::string_view trigger() const override {
     return "/friends_graph";
   }
-  virtual void run(
+  void run(
     const vk::event::message_new &event,
     const std::vector<std::string_view> &args
   ) override {
@@ -119,4 +119,4 @@ class id_collector_command : public command {
 
 } // namespace bot
 
-#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_ID_COLLECTOR_HPP
+#endif // WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_ID_COLLECTOR_HPP

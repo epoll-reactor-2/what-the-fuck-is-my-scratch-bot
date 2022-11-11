@@ -1,5 +1,5 @@
-#ifndef NOBODY_CAN_FUCK_WITH_ME_BOT_CMUS_STATUS_HPP
-#define NOBODY_CAN_FUCK_WITH_ME_BOT_CMUS_STATUS_HPP
+#ifndef WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_CMUS_STATUS_HPP
+#define WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_CMUS_STATUS_HPP
 
 #include "../background_command.hpp"
 
@@ -60,7 +60,7 @@ class cmus_status_command : public background_command {
     return result;
   }
 
-  virtual void run() override {
+  void run() override {
     std::string cached_output = get_cmus_status();
     bool status_was_set = false;
 
@@ -93,4 +93,4 @@ class cmus_status_command : public background_command {
 
 } // namespace bot
 
-#endif // NOBODY_CAN_FUCK_WITH_ME_BOT_CMUS_STATUS_HPP
+#endif // WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_CMUS_STATUS_HPP

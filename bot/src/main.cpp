@@ -24,7 +24,7 @@ public:
       : argc_(argc)
       , argv_(argv) {
     if (argc_ != 2) {
-      std::cerr << "usage: ./nobody_can_fuck_with_me_bot <config>" << std::endl;
+      std::cerr << "usage: ./what_the_fuck_is_my_scratch_bot <config>" << std::endl;
       exit(1);
     }
   }

@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(
-  nobody_can_fuck_with_me_bot
-  DESCRIPTION "Personal bot with wierd things for https://vk.com/nobody_can_fuck_with_me"
+  what_the_fuck_is_my_scratch_bot
+  DESCRIPTION "Personal bot with wierd things for https://vk.com/cxxstructorimplicitparamval"
   LANGUAGES CXX
 )
 
