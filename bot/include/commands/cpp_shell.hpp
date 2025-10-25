@@ -19,7 +19,14 @@ class cpp_shell_command : public command {
   std::string os_exec(std::string_view cmd) {
     std::string result;
     std::array<char, 128> buffer;
-    std::unique_ptr<FILE, decltype (&pclose)> pipe(popen(cmd.data(), "r"), pclose);
+
+    struct pclose_operator {
+        void operator()(FILE *file) {
+            pclose(file);
+        }
+    };
+
+    std::unique_ptr<FILE, pclose_operator> pipe(popen(cmd.data(), "r"), pclose_operator{});
     while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
       result += buffer.data();
     }

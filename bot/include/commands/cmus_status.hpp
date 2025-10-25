@@ -19,7 +19,7 @@ namespace bot {
 class cmus_status_command : public background_command {
   std::string get_cmus_status() {
     static const char cmus_command[] =
-        "#!/bin/sh\n"
+        "#!/bin/bash\n"
         ""
         "if info=$(cmus-remote -Q 2> /dev/null); then\n"
         "  status=$(echo \"$info\" | grep -v \"set \" | grep -v \"tag \" | grep \"status \" | cut -d ' ' -f 2)\n"
@@ -30,7 +30,7 @@ class cmus_status_command : public background_command {
         "    position=$(echo \"$info\" | grep -v \"set \" | grep -v \"tag \" | grep \"position \" | cut -d ' ' -f 2)\n"
         "    duration=$(echo \"$info\" | grep -v \"set \" | grep -v \"tag \" | grep \"duration \" | cut -d ' ' -f 2)\n"
         ""
-        "    if [[ \"$duration\" -ge 0 ]]; then\n"
+        "    if [ \"$duration\" -ge 0 ]; then\n"
         "      pos_minutes=$(printf \"%02d\" $((position / 60)))\n"
         "      pos_seconds=$(printf \"%02d\" $((position % 60)))\n"
         ""
@@ -53,7 +53,14 @@ class cmus_status_command : public background_command {
         "fi";
     std::string result;
     std::array<char, 128> buffer;
-    std::unique_ptr<FILE, decltype (&pclose)> pipe(popen(cmus_command, "r"), pclose);
+
+
+    struct pclose_operator {
+        void operator()(FILE *file) {
+            pclose(file);
+        }
+    };
+    std::unique_ptr<FILE, pclose_operator> pipe(popen(cmus_command, "r"), pclose_operator{});
     while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
       result += buffer.data();
     }
@@ -70,10 +77,11 @@ class cmus_status_command : public background_command {
 
       if (std::string output = get_cmus_status(); output != cached_output) {
         spdlog::info("cmus_status_command: cmus status changed");
-        vk::method::user_constructor{}
+        std::string vk_response = vk::method::user_constructor{}
             .method("status.set")
             .param("text", output)
-            .request_without_output();
+            .perform_request();
+        spdlog::info("CMUS: {}", vk_response);
         cached_output = std::move(output);
         status_was_set = false;
       } else {

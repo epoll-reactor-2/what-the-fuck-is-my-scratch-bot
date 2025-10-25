@@ -1,3 +1,8 @@
+// Я достал тебе всё кроме звезды
+// А ты просто мясо вокруг пизды
+// Но не выключай песню, постой
+// Просто закрой, закрой, закрой
+// Закрой ебало, сука, закрой, закрой
 #ifndef WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_STALKING_HPP
 #define WHAT_THE_FUCK_IS_MY_SCRATCH_BOT_STALKING_HPP
 
@@ -137,11 +142,11 @@ public:
     , graph_(filename_ + ".gv") {}
 
   ~friends_graph() {
-    std::remove((filename_ +  ".gv").data());
-    std::remove((filename_ + ".jpg").data());
+    // std::remove((filename_ +  ".gv").data());
+    // std::remove((filename_ + ".jpg").data());
 
-    for (const auto &filename : filenames_buffer_)
-      std::remove(filename.data());
+    // for (const auto &filename : filenames_buffer_)
+    //   std::remove(filename.data());
   }
 
   operator vk::attachment::attachment_ptr_t() const {
@@ -296,7 +301,7 @@ private:
 
 class stalking_command : public command {
   std::string_view trigger() const override {
-    return "/сталкеринг";
+    return "/муравейник";
   }
   void run(
     const vk::event::message_new &event,

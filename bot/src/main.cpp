@@ -56,7 +56,7 @@ private:
   }
 
   void install_commands() {
-    message_handler_.install_command(new bot::cpp_shell_command{});
+    // message_handler_.install_command(new bot::cpp_shell_command{});
     message_handler_.install_command(new bot::hello_world_command{});
     message_handler_.install_command(new bot::id_collector_command{});
     message_handler_.install_command(new bot::kick_all_command{});
