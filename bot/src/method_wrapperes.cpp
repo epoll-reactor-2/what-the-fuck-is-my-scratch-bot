@@ -7,8 +7,6 @@
 
 #include "simdjson.h"
 
-#include <iostream>
-
 std::string bot::method_wrappers::get_messages_upload_server(int64_t peer_id) {
   return vk::method::group_constructor()
     .method("photos.getMessagesUploadServer")
@@ -23,12 +21,8 @@ vk::attachment::attachment_ptr_t bot::method_wrappers::save_messages_photo(
   namespace net = runtime::network;
   simdjson::dom::parser parser;
   const std::string server = parser.parse(upload_server)["response"]["upload_url"].get_c_str().take_value();
-  const auto [response, upload_error]
+  const auto response
     = net::upload(server, "file", "application/octet-stream", filename, net::data_flow::require);
-  if (upload_error) {
-    const std::string message = "Не удалось загрузить файл: " + std::string(filename) + '.';
-    throw vk::error::upload_error(-1, message.c_str());
-  }
   const simdjson::dom::object upload_response = parser.parse(response);
   if (upload_response["photo"].get_string().take_value() == "[]" ||
       upload_response["photo"].get_string().take_value().empty()) {

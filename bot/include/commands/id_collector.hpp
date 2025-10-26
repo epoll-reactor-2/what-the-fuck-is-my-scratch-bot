@@ -3,8 +3,6 @@
 
 #include "command.hpp"
 
-#include "cpp_vk_lib/runtime/setup_logger.hpp"
-#include "cpp_vk_lib/vk/config/config.hpp"
 #include "cpp_vk_lib/vk/events/message_new.hpp"
 #include "cpp_vk_lib/vk/methods/constructor.hpp"
 #include "cpp_vk_lib/vk/methods/basic.hpp"
@@ -12,9 +10,7 @@
 #include "simdjson.h"
 #include "asio.hpp"
 
-#include <future>
 #include <vector>
-#include <deque>
 #include <iostream>
 
 namespace bot {

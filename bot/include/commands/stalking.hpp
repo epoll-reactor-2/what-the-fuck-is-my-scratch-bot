@@ -8,11 +8,9 @@
 
 #include "command.hpp"
 #include "method_wrappers.hpp"
+#include "string_utils.hpp"
 
-#include "cpp_vk_lib/runtime/setup_logger.hpp"
 #include "cpp_vk_lib/runtime/misc/cppdefs.hpp"
-#include "cpp_vk_lib/vk/config/config.hpp"
-#include "cpp_vk_lib/vk/error/exception.hpp"
 #include "cpp_vk_lib/vk/events/message_new.hpp"
 #include "cpp_vk_lib/vk/methods/constructor.hpp"
 #include "cpp_vk_lib/vk/methods/basic.hpp"
@@ -138,15 +136,15 @@ public:
   friends_graph(size_t user_id, size_t peer_id, std::string_view filename)
     : user_id_(user_id)
     , peer_id_(peer_id)
-    , filename_(string_utils::thread_local_filename(filename))
+    , filename_(bot::string_utils::thread_local_filename(filename))
     , graph_(filename_ + ".gv") {}
 
   ~friends_graph() {
-    // std::remove((filename_ +  ".gv").data());
-    // std::remove((filename_ + ".jpg").data());
+    std::remove((filename_ +  ".gv").data());
+    std::remove((filename_ + ".jpg").data());
 
-    // for (const auto &filename : filenames_buffer_)
-    //   std::remove(filename.data());
+    for (const auto &filename : filenames_buffer_)
+      std::remove(filename.data());
   }
 
   operator vk::attachment::attachment_ptr_t() const {

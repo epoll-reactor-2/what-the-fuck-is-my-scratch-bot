@@ -193,8 +193,7 @@ void try_parse_files(smtp_ctx_t *ctx, const vk::event::message_new &event) {
     if (!document)
       continue;
     std::vector<uint8_t> buffer;
-    if (!runtime::network::download(document->raw_url(), document->value()))
-      throw std::runtime_error("Ошибка при скачивании файла.");
+    runtime::network::download(document->raw_url(), document->value());
   }
 
   if (saved_files.empty())

@@ -3,15 +3,10 @@
 
 #include "command.hpp"
 
-#include "string_utils.hpp"
-
-#include "cpp_vk_lib/runtime/setup_logger.hpp"
-#include "cpp_vk_lib/runtime/string_utils/implementation/split.hpp"
 #include "cpp_vk_lib/runtime/string_utils/implementation/join.hpp"
-#include "cpp_vk_lib/vk/config/config.hpp"
 #include "cpp_vk_lib/vk/events/message_new.hpp"
-#include "cpp_vk_lib/vk/long_poll/long_poll.hpp"
 #include "cpp_vk_lib/vk/methods/basic.hpp"
+#include <algorithm>
 
 namespace bot {
 

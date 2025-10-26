@@ -3,15 +3,12 @@
 
 #include "../background_command.hpp"
 
-#include "cpp_vk_lib/vk/events/message_new.hpp"
-#include "cpp_vk_lib/vk/methods/basic.hpp"
 #include "cpp_vk_lib/vk/methods/constructor.hpp"
 
 #include "spdlog/spdlog.h"
 
 #include <csignal>
 #include <thread>
-#include <chrono>
 #include <array>
 
 namespace bot {
@@ -53,7 +50,6 @@ class cmus_status_command : public background_command {
         "fi";
     std::string result;
     std::array<char, 128> buffer;
-
 
     struct pclose_operator {
         void operator()(FILE *file) {

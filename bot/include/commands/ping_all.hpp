@@ -9,7 +9,6 @@
 #include "cpp_vk_lib/vk/methods/basic.hpp"
 
 #include "simdjson.h"
-#include "spdlog/fmt/fmt.h"
 #include "spdlog/spdlog.h"
 
 namespace bot {
